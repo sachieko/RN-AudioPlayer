@@ -1,13 +1,9 @@
-import React, {useContext} from 'react';
-import {View, Button, Text} from 'react-native';
-import {TracksContext} from '../providers/TracksContext';
+import React, { useContext } from 'react';
+import { View, Button, Text } from 'react-native';
+import { TracksContext } from '../providers/TracksContext';
 
 const Playing = (): JSX.Element => {
-  const {currentTrack, setCurrentTrack} = useContext(TracksContext);
-
-  const handleClick = () => {
-    setCurrentTrack(null); // clear track
-  };
+  const { currentTrack, setCurrentTrack } = useContext(TracksContext);
 
   return (
     <View>
@@ -16,7 +12,10 @@ const Playing = (): JSX.Element => {
           {currentTrack.publisher}:{currentTrack.title}
         </Text>
       )}
-      <Button title="Clear current track" onPress={handleClick} />
+      <Button
+        title="Clear current track"
+        onPress={() => setCurrentTrack(null)}
+      />
     </View>
   );
 };
