@@ -10,8 +10,6 @@ import {
   SafeAreaView,
   StatusBar,
   useColorScheme,
-  View,
-  Text,
   ActivityIndicator,
 } from 'react-native';
 import { TracksProvider } from './providers/TracksContext';
@@ -19,6 +17,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import TrackList from './components/TrackList';
 import Playing from './components/Playing';
 import PlayerControls from './components/PlayerControls';
+import Header from './components/Header';
 import { SetupService } from './services/SetupService';
 
 function App(): JSX.Element {
@@ -53,9 +52,7 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View>
-        <Text>Placeholder for the App header.</Text>
-      </View>
+      <Header />
       <TracksProvider>
         <TrackList />
         <Playing />
