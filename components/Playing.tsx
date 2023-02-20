@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {View, Button, Text} from 'react-native';
 import {TracksContext} from '../providers/TracksContext';
 
-const Playing = () => {
+const Playing = (): JSX.Element => {
   const {currentTrack, setCurrentTrack} = useContext(TracksContext);
 
   const handleClick = () => {
