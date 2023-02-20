@@ -18,6 +18,7 @@ import { TracksProvider } from './providers/TracksContext';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import TrackList from './components/TrackList';
 import Playing from './components/Playing';
+import PlayerControls from './components/PlayerControls';
 import { SetupService } from './services/SetupService';
 
 function App(): JSX.Element {
@@ -58,6 +59,7 @@ function App(): JSX.Element {
       <TracksProvider>
         <TrackList />
         <Playing />
+        <PlayerControls />
       </TracksProvider>
     </SafeAreaView>
   );
