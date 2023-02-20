@@ -1,5 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
+import axios from 'axios';
 
+// This is the shape of the track data in the API
 export interface Track {
   id: number | null;
   title: string;
@@ -7,7 +9,11 @@ export interface Track {
   mp3: string;
   artwork: string;
 }
-
+// Used for the API return type
+interface podcastData {
+  items: Track[];
+}
+// The types of the Context provided
 type TrackContextType = {
   currentTrack: Track | null;
   setCurrentTrack: React.Dispatch<React.SetStateAction<Track | null>>;
@@ -26,27 +32,21 @@ interface TrackProviderProps {
   children: React.ReactNode;
 }
 
-export const MyProvider: React.FC<TrackProviderProps> = ({children}) => {
+export const TrackProvider: React.FC<TrackProviderProps> = ({children}) => {
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [tracks, setTracks] = useState<Track[]>([]);
 
   useEffect(() => {
-    setTracks([
-      {
-        id: 1,
-        title: 'Monster',
-        publisher: 'Starset',
-        mp3: 'https://http.cat/200',
-        artwork: 'https://http.cat/200',
-      },
-      {
-        id: 2,
-        title: 'The Sin and the Sentence',
-        publisher: 'Trivium',
-        mp3: 'https://http.cat/200',
-        artwork: 'https://http.cat/200',
-      },
-    ]); // Replace with actual API call here.
+    const url =
+      'https://raw.githubusercontent.com/taddylabs/RN-AudioPlayer/master/episodes.json';
+    axios
+      .get<podcastData>(url)
+      .then(res => {
+        setTracks([...res.data.items]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   const contextValue: TrackContextType = {

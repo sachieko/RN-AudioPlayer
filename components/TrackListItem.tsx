@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {TracksContext} from '../providers/TracksContext';
-import type {PropsWithChildren} from 'react';
 import type {Track} from '../providers/TracksContext';
 
-type TrackProps = PropsWithChildren<Track>;
+interface TrackItemProps {
+  track: Track;
+}
 
-const TrackListItem = (track: TrackProps): JSX.Element => {
+const TrackListItem = ({track}: TrackItemProps) => {
   const {setCurrentTrack} = useContext(TracksContext);
   const handleClick = () => {
     setCurrentTrack(track); // When current track changes, update track player in context.
