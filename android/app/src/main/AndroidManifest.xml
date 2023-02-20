@@ -21,5 +21,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <service android:name="com.reactlibrary.TrackPlayerService" android:foregroundServiceType="mediaPlayback" />
+      <meta-data android:name="com.ducktamine.REACT_NATIVE_TRACK_PLAYER_NOTIFICATION_CHANNEL_NAME" android:value="Track Player" />
+      <meta-data android:name="com.ducktamine.REACT_NATIVE_TRACK_PLAYER_NOTIFICATION_CHANNEL_DESCRIPTION" android:value="Track Player playback controls" />
     </application>
 </manifest>

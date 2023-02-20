@@ -1,16 +1,16 @@
-import React, {Fragment, useContext} from 'react';
+import React, { Fragment, useContext } from 'react';
 import {
   ScrollView,
   View,
   useColorScheme,
   ActivityIndicator,
 } from 'react-native';
-import {TracksContext} from '../providers/TracksContext';
+import { TracksContext } from '../providers/TracksContext';
 import TrackListItem from './TrackListItem';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const TrackList = (): JSX.Element => {
-  const {tracks} = useContext(TracksContext);
+  const { tracks } = useContext(TracksContext);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
