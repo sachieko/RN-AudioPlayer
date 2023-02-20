@@ -11,8 +11,8 @@ const Header = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    paddingTop: 38,
+    height: 60,
+    paddingTop: 20,
     backgroundColor: '#333',
   },
   title: {
