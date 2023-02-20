@@ -8,9 +8,11 @@ const Playing = (): JSX.Element => {
   return (
     <View>
       {currentTrack && (
-        <Text>
-          {currentTrack.publisher}:{currentTrack.title}
-        </Text>
+        <View>
+          <Text>
+            {currentTrack.publisher}:{currentTrack.title}
+          </Text>
+        </View>
       )}
       <Button
         title="Clear current track"
