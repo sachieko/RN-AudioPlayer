@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { Track } from 'react-native-track-player';
 import { QueueInitialTracksService } from '../services/QueueTracksService';
 // This is the shape of the track data in the API
 export interface TrackData {
@@ -10,9 +10,7 @@ export interface TrackData {
   mp3: string;
   artwork: string;
 }
-export interface Track extends TrackData {
-  url: string;
-}
+
 // Used for the API return type
 interface podcastData {
   items: TrackData[];
@@ -46,11 +44,12 @@ export const TracksProvider: React.FC<TrackProviderProps> = ({ children }) => {
         'https://raw.githubusercontent.com/taddylabs/RN-AudioPlayer/master/episodes.json';
       await TrackPlayer.reset();
       const response = await axios.get<podcastData>(url);
-      const structuredTracks = response.data.items.map(item => {
+      const structuredTracks: Track[] = response.data.items.map(item => {
         return { ...item, url: item.mp3 };
       });
-      setTracks(structuredTracks);
       QueueInitialTracksService(structuredTracks);
+      const queue: Track[] = await TrackPlayer.getQueue();
+      setTracks(queue);
     })();
   }, []);
 
