@@ -12,23 +12,25 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 const TrackList = (): JSX.Element => {
   const { tracks } = useContext(TracksContext);
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
+  const trackListStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1,
   };
 
   if (tracks.length === 0) {
-    return <ActivityIndicator />;
+    return (
+      <View style={trackListStyle}>
+        <ActivityIndicator size={40} />
+      </View>
+    );
   }
 
   return (
     <>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+        style={trackListStyle}>
+        <View>
           {tracks.map(track => (
             <TrackListItem key={track.id} track={track} />
           ))}
