@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Button, Text } from 'react-native';
 import TrackPlayer, {
   usePlaybackState,
   State,
 } from 'react-native-track-player';
+import { TracksContext } from '../providers/TracksContext';
 
 const PlayerControls = (): JSX.Element => {
+  const { setCurrentTrack } = useContext(TracksContext);
   const playback: State = usePlaybackState();
 
-  const performSkipToNext = () => {
+  const updateCurrentTrack = async (): Promise<void> => {
+    const index = await TrackPlayer.getCurrentTrack();
+    TrackPlayer.getTrack(index as number).then(track => {
+      setCurrentTrack(track);
+    });
+  };
+  const performSkipToNext = async () => {
     TrackPlayer.skipToNext();
-    TrackPlayer.play();
+    updateCurrentTrack();
   };
   const performSkipToPrevious = () => {
     TrackPlayer.skipToPrevious();
-    TrackPlayer.play();
+    updateCurrentTrack();
   };
   const performPlay = () => TrackPlayer.play();
   const performPause = () => TrackPlayer.pause();
