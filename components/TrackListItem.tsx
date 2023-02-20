@@ -1,14 +1,8 @@
 import React, { useContext } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, useColorScheme } from 'react-native';
 import { TracksContext } from '../providers/TracksContext';
 import TrackPlayer, { Track } from 'react-native-track-player';
+import Button from './Button';
 
 interface TrackItemProps {
   track: Track;
@@ -18,6 +12,7 @@ const TrackListItem = ({ track }: TrackItemProps): JSX.Element => {
   const { setCurrentTrack, tracks } = useContext(TracksContext);
   const isDarkMode = useColorScheme() === 'dark';
   const handleClick = async () => {
+    TrackPlayer.pause();
     setCurrentTrack(track);
     const trackIndex = tracks.findIndex(trackItem => trackItem.id === track.id);
     await TrackPlayer.skip(trackIndex);
@@ -36,9 +31,7 @@ const TrackListItem = ({ track }: TrackItemProps): JSX.Element => {
             {track.publisher}
           </Text>
         </View>
-        <TouchableHighlight onPress={handleClick} style={styles.playButton}>
-          <Text style={styles.playButtonText}>Play</Text>
-        </TouchableHighlight>
+        <Button onPress={handleClick} title="Play" />
       </View>
     </View>
   );

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import TrackPlayer, {
   usePlaybackState,
   State,
 } from 'react-native-track-player';
 import { TracksContext } from '../providers/TracksContext';
+import Button from './Button';
 
 const PlayerControls = (): JSX.Element => {
   const { setCurrentTrack } = useContext(TracksContext);
@@ -13,7 +14,7 @@ const PlayerControls = (): JSX.Element => {
   const updateCurrentTrack = async (): Promise<void> => {
     const index = await TrackPlayer.getCurrentTrack();
     TrackPlayer.getTrack(index as number).then(track => {
-      setCurrentTrack(track);
+      setCurrentTrack(track); // Update the currently displayed track
     });
   };
   const performSkipToNext = async () => {
@@ -36,16 +37,33 @@ const PlayerControls = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Button title="Prev" onPress={performSkipToPrevious} />
-        <Button title="Pause" onPress={performPause} />
-        <Text style={styles.textContainer}>{status}</Text>
-        <Button title="Play" onPress={performPlay} />
-        <Button title="Next" onPress={performSkipToNext} />
+        <Button
+          title="<< Prev"
+          textStyles={buttonStyles.title}
+          onPress={performSkipToPrevious}
+        />
+        <Button
+          title="|| Pause"
+          textStyles={buttonStyles.title}
+          onPress={performPause}
+        />
+        <Button
+          title="> Play"
+          textStyles={buttonStyles.title}
+          onPress={performPlay}
+        />
+        <Button
+          title=">> Next"
+          textStyles={buttonStyles.title}
+          onPress={performSkipToNext}
+        />
       </View>
+      <Text style={styles.statusText}>{status}</Text>
     </View>
   );
 };
-
+// Style variables for the player container
+// Button styles are not used as they are being passed to a custom button component
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -55,9 +73,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  textContainer: {
-    color: 'violet',
+  statusText: {
+    height: 25,
+    color: '#666',
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
 });
+// These are passed to custom button components
+// The possible categories are: title, button
+// Title controls the text styles
+// Button controls view styles.
+const buttonStyles = {
+  title: {
+    fontSize: 16,
+    color: 'white',
+  },
+};
 
 export default PlayerControls;
