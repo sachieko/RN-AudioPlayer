@@ -14,9 +14,10 @@ import {
   View,
   Text,
 } from 'react-native';
-
+import {MyProvider} from './providers/TracksContext';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import TrackListItem from './components/TrackListItem';
+import Playing from './components/Playing';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,31 +35,34 @@ function App(): JSX.Element {
       <View>
         <Text>Placeholder for the App header.</Text>
       </View>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <View>
-            <TrackListItem
-              id={1}
-              title={'Monster'}
-              publisher={'Starset'}
-              mp3={'https://http.cat/200'}
-              artwork={'https://http.cat/200'}
-            />
-            <TrackListItem
-              id={2}
-              title={'The Sin and the Sentence'}
-              publisher={'Trivium'}
-              mp3={'https://http.cat/200'}
-              artwork={'https://http.cat/200'}
-            />
+      <MyProvider>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={backgroundStyle}>
+          <View
+            style={{
+              backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            }}>
+            <View>
+              <TrackListItem
+                id={1}
+                title={'Monster'}
+                publisher={'Starset'}
+                mp3={'https://http.cat/200'}
+                artwork={'https://http.cat/200'}
+              />
+              <TrackListItem
+                id={2}
+                title={'The Sin and the Sentence'}
+                publisher={'Trivium'}
+                mp3={'https://http.cat/200'}
+                artwork={'https://http.cat/200'}
+              />
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+        <Playing />
+      </MyProvider>
     </SafeAreaView>
   );
 }

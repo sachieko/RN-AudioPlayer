@@ -1,34 +1,28 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {TracksContext} from '../providers/TracksContext';
 import type {PropsWithChildren} from 'react';
+import type {Track} from '../providers/TracksContext';
 
-type TrackProps = PropsWithChildren<{
-  id: number;
-  title: string;
-  publisher: string;
-  mp3: string;
-  artwork: string;
-}>;
+type TrackProps = PropsWithChildren<Track>;
 
-const TrackListItem = ({
-  id,
-  title,
-  publisher,
-  mp3,
-  artwork,
-}: TrackProps): JSX.Element => {
-  console.log(`${id}: links to mp3 url ${mp3}`);
+const TrackListItem = (track: TrackProps): JSX.Element => {
+  const {setCurrentTrack} = useContext(TracksContext);
+  const handleClick = () => {
+    setCurrentTrack(track); // When current track changes, update track player in context.
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={{uri: artwork}} style={styles.artwork} />
+    <TouchableOpacity style={styles.container} onPress={handleClick}>
+      <Image source={{uri: track.artwork}} style={styles.artwork} />
       <View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.publisher}>{publisher}</Text>
+        <Text style={styles.title}>{track.title}</Text>
+        <Text style={styles.publisher}>{track.publisher}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
-
+// Styles for tracklist below.
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
