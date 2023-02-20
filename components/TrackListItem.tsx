@@ -1,13 +1,8 @@
 import React, { useContext } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, useColorScheme } from 'react-native';
 import { TracksContext } from '../providers/TracksContext';
 import TrackPlayer, { Track } from 'react-native-track-player';
+import Button from './Button';
 
 interface TrackItemProps {
   track: Track;
@@ -15,7 +10,9 @@ interface TrackItemProps {
 
 const TrackListItem = ({ track }: TrackItemProps): JSX.Element => {
   const { setCurrentTrack, tracks } = useContext(TracksContext);
+  const isDarkMode = useColorScheme() === 'dark';
   const handleClick = async () => {
+    TrackPlayer.pause();
     setCurrentTrack(track);
     const trackIndex = tracks.findIndex(trackItem => trackItem.id === track.id);
     await TrackPlayer.skip(trackIndex);
@@ -27,12 +24,14 @@ const TrackListItem = ({ track }: TrackItemProps): JSX.Element => {
       <Image source={{ uri: `${track.artwork}` }} style={styles.artwork} />
       <View style={styles.infoContainer}>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{track.title}</Text>
-          <Text style={styles.publisher}>{track.publisher}</Text>
+          <Text style={isDarkMode ? styles.titleDark : styles.title}>
+            {track.title}
+          </Text>
+          <Text style={isDarkMode ? styles.publisherDark : styles.publisher}>
+            {track.publisher}
+          </Text>
         </View>
-        <TouchableHighlight onPress={handleClick} style={styles.playButton}>
-          <Text>Play</Text>
-        </TouchableHighlight>
+        <Button onPress={handleClick} title="Play" />
       </View>
     </View>
   );
@@ -59,6 +58,12 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  titleDark: {
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -66,12 +71,19 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
   },
+  publisherDark: {
+    fontSize: 14,
+    color: '#BBBBBB',
+  },
   playButton: {
     width: 50,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'purple',
+  },
+  playButtonText: {
+    color: 'white',
   },
 });
 

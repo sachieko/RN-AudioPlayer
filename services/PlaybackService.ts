@@ -1,5 +1,5 @@
 import TrackPlayer, { Event } from 'react-native-track-player';
-
+// Remove console logs for events if you do not want the updates
 export async function PlaybackService() {
   TrackPlayer.addEventListener(Event.RemotePause, () => {
     console.log('Event.RemotePause');
