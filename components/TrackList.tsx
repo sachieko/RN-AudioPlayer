@@ -9,7 +9,7 @@ import {TracksContext} from '../providers/TracksContext';
 import TrackListItem from './TrackListItem';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const TrackList = () => {
+const TrackList = (): JSX.Element => {
   const {tracks} = useContext(TracksContext);
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {

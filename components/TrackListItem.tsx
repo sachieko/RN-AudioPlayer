@@ -7,7 +7,7 @@ interface TrackItemProps {
   track: Track;
 }
 
-const TrackListItem = ({track}: TrackItemProps) => {
+const TrackListItem = ({track}: TrackItemProps): JSX.Element => {
   const {setCurrentTrack} = useContext(TracksContext);
   const handleClick = () => {
     setCurrentTrack(track); // When current track changes, update track player in context.

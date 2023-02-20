@@ -32,7 +32,7 @@ interface TrackProviderProps {
   children: React.ReactNode;
 }
 
-export const TrackProvider: React.FC<TrackProviderProps> = ({children}) => {
+export const TracksProvider: React.FC<TrackProviderProps> = ({children}) => {
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [tracks, setTracks] = useState<Track[]>([]);
 

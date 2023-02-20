@@ -13,7 +13,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import {TrackProvider} from './providers/TracksContext';
+import {TracksProvider} from './providers/TracksContext';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import TrackList from './components/TrackList';
 import Playing from './components/Playing';
@@ -33,10 +33,10 @@ function App(): JSX.Element {
       <View>
         <Text>Placeholder for the App header.</Text>
       </View>
-      <TrackProvider>
+      <TracksProvider>
         <TrackList />
         <Playing />
-      </TrackProvider>
+      </TracksProvider>
     </SafeAreaView>
   );
 }
