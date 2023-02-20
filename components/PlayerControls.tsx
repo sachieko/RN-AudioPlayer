@@ -5,13 +5,19 @@ import TrackPlayer, {
   State,
 } from 'react-native-track-player';
 
-const performSkipToNext = () => TrackPlayer.skipToNext();
-const performSkipToPrevious = () => TrackPlayer.skipToPrevious();
-const performPlay = () => TrackPlayer.play();
-const performPause = () => TrackPlayer.pause();
-
 const PlayerControls = (): JSX.Element => {
   const playback: State = usePlaybackState();
+
+  const performSkipToNext = () => {
+    TrackPlayer.skipToNext();
+    TrackPlayer.play();
+  };
+  const performSkipToPrevious = () => {
+    TrackPlayer.skipToPrevious();
+    TrackPlayer.play();
+  };
+  const performPlay = () => TrackPlayer.play();
+  const performPause = () => TrackPlayer.pause();
   const getStatusString = (input: State): string => {
     const status = input.toString();
     return status[0].toUpperCase() + status.slice(1);
