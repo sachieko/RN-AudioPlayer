@@ -23,8 +23,11 @@ import { SetupService } from './services/SetupService';
 function App(): JSX.Element {
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const styles = {
+    backgroundStyle: {
+      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+      flex: 1,
+    },
   };
 
   useEffect(() => {
@@ -37,17 +40,18 @@ function App(): JSX.Element {
 
   if (!isPlayerReady) {
     return (
-      <SafeAreaView style={backgroundStyle}>
-        <ActivityIndicator />
+      <SafeAreaView style={styles.backgroundStyle}>
+        <Header />
+        <ActivityIndicator size="large" />
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={styles.backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor={styles.backgroundStyle.backgroundColor}
       />
       <Header />
       <TracksProvider>
