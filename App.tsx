@@ -30,13 +30,10 @@ function App(): JSX.Element {
   useEffect(() => {
     const setup = async () => {
       const isSetup = await SetupService();
-      if (isPlayerReady) {
-        return;
-      }
       setIsPlayerReady(isSetup);
     };
     setup();
-  }, [isPlayerReady]);
+  }, []);
 
   if (!isPlayerReady) {
     return (
