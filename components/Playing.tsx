@@ -16,7 +16,7 @@ const Playing = (): JSX.Element => {
       {currentTrack && (
         <View>
           <Text>
-            {currentTrack.publisher}:{currentTrack.title}
+            Playing: {currentTrack.publisher} - {currentTrack.title}
           </Text>
         </View>
       )}

@@ -38,7 +38,7 @@ const PlayerControls = (): JSX.Element => {
       <View style={styles.row}>
         <Button title="Prev" onPress={performSkipToPrevious} />
         <Button title="Pause" onPress={performPause} />
-        <Text>{status}</Text>
+        <Text style={styles.textContainer}>{status}</Text>
         <Button title="Play" onPress={performPlay} />
         <Button title="Next" onPress={performSkipToNext} />
       </View>
@@ -49,10 +49,14 @@ const PlayerControls = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    marginTop: 20,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  textContainer: {
+    color: 'violet',
   },
 });
 
