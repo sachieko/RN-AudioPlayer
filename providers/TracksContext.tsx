@@ -17,7 +17,7 @@ export interface Track extends TrackData {
 interface podcastData {
   items: TrackData[];
 }
-// The types of the Context provided
+// Context Types
 type TrackContextType = {
   currentTrack: Track | null;
   setCurrentTrack: React.Dispatch<React.SetStateAction<Track | null>>;
