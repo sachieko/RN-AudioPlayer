@@ -1,5 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
-import type { Track } from '../providers/TracksContext';
+import TrackPlayer, { Track } from 'react-native-track-player';
 
 export const QueueInitialTracksService = async (
   episodes: Track[],

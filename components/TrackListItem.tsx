@@ -7,8 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { TracksContext } from '../providers/TracksContext';
-import type { Track } from '../providers/TracksContext';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, { Track } from 'react-native-track-player';
 
 interface TrackItemProps {
   track: Track;
@@ -25,7 +24,7 @@ const TrackListItem = ({ track }: TrackItemProps): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: track.artwork }} style={styles.artwork} />
+      <Image source={{ uri: `${track.artwork}` }} style={styles.artwork} />
       <View style={styles.infoContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{track.title}</Text>

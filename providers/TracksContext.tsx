@@ -23,8 +23,6 @@ type TrackContextType = {
   setCurrentTrack: React.Dispatch<React.SetStateAction<Track | null>>;
   tracks: Track[];
   setTracks: React.Dispatch<React.SetStateAction<Track[]>>;
-  handlePlay: () => void;
-  handlePause: () => void;
 };
 
 export const TracksContext = createContext<TrackContextType>({
@@ -32,8 +30,6 @@ export const TracksContext = createContext<TrackContextType>({
   setCurrentTrack: () => {},
   tracks: [],
   setTracks: () => {},
-  handlePlay: () => {},
-  handlePause: () => {},
 });
 
 interface TrackProviderProps {
@@ -48,6 +44,7 @@ export const TracksProvider: React.FC<TrackProviderProps> = ({ children }) => {
     (async () => {
       const url =
         'https://raw.githubusercontent.com/taddylabs/RN-AudioPlayer/master/episodes.json';
+      await TrackPlayer.reset();
       const response = await axios.get<podcastData>(url);
       const structuredTracks = response.data.items.map(item => {
         return { ...item, url: item.mp3 };
@@ -57,20 +54,11 @@ export const TracksProvider: React.FC<TrackProviderProps> = ({ children }) => {
     })();
   }, []);
 
-  const handlePlay = async (): Promise<void> => {
-    await TrackPlayer.play();
-  };
-  const handlePause = async (): Promise<void> => {
-    await TrackPlayer.pause();
-  };
-
   const contextValue: TrackContextType = {
     currentTrack,
     setCurrentTrack,
     tracks,
     setTracks,
-    handlePlay,
-    handlePause,
   };
 
   return (
