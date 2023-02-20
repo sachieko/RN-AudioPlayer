@@ -41,7 +41,7 @@ export const TracksProvider: React.FC<TrackProviderProps> = ({ children }) => {
   useEffect(() => {
     (async () => {
       const url =
-        'https://raw.githubusercontent.com/taddylabs/RN-AudioPlayer/master/episodes.json';
+        'https://raw.githubusercontent.com/sachieko/RN-AudioPlayer/main/episodes.json';
       await TrackPlayer.reset();
       const response = await axios.get<podcastData>(url);
       const structuredTracks: Track[] = response.data.items.map(item => {
