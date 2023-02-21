@@ -31,7 +31,7 @@ The answers to these [questions](./assets/answers.md) are included in the projec
 
 I used android studio without Expo for this project, and after installing the packages using npm I had to follow these steps.
 
-1. Ensure the correct SDK kit is setup. The emulator I used most was: `Pixel 6 API 31` which relied on `Android 12.0(S) SDK Kit 31` but my Android SDK manager used `Android 13.0(Tiramisu) SDK 33` for the target SDK of the application as well as `Build Tools 30.0.3` for the emulator to work properly. This was likely due to how I set up the project, and I am unsure why that version of build tools was automatically included but it was necessary for the build to work.
+1. Ensure the correct SDK kit is setup. The emulator I used most was: `Pixel 6 API 31` which relied on `Android 12.0(S) SDK Kit 31` but my Android SDK manager used `Android 13.0(Tiramisu) SDK 33` for the target SDK of the application as well as `Build Tools 33` target for the emulator to work properly. This was likely due to how I set up the project, and I am unsure why that version of build tools was automatically included but it was necessary for the build to work. I had originally intended to build on Android 12 SDK 31.
 2. Start your emulator in Android Studio. This can be done by clicking the play button beside the emulator in the device list.
 3. Use `npx react-native start` to start the metro bundler. I ran this in Windows Powershell but your environment may differ.
 4. Run `npx react-native run-android` to start the app on the emulator. 
