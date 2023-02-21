@@ -22,7 +22,8 @@ The answers to these [questions](./assets/answers.md) are included in the projec
 ## Screenshots
 
 > Here is the main view of the app
-![Application](./assets/appview.png)
+>
+>![Application](./assets/appview.png)
 
 > When a user has paused the app and goes to a new track with Prev or Next, it does not start playing but indicates it is ready. This functionality could be changed if more convenient.
 ![Paused](./assets/trackNotStarted.png)
