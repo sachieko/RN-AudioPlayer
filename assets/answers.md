@@ -2,9 +2,11 @@
 
 * If you have more time to do UI / UX improvements, what improvements would you make?
 
-> I wanted to implement a progress bar which wouldn't take too long to get going, as there is a package for it, but implementing the ability for the user to skip to new places by interacting with the progress bar would be my next main UI/UX goal. The main drawback for users is the inability to skip to different places in a track which if you were halfway through listening and wanted to pick up where you started currently it's not implemented.
+> I wanted to implement a progress bar which wouldn't take too long to get going, as there is a package for it, but implementing the ability for the user to skip to new places by interacting with the progress bar would be a small timesink to implement. The main drawback for users is the inability to skip to different places in a track which if you were halfway through listening and wanted to pick up where you started currently it's not implemented.
 >
 > Otherwise, improving the general look of the app through styles would be a priority as well. Importing a library for icons was something I looked into but decided not to prioritize in the 8 hours spent on this.
+>
+>Implementing playlists is a possible feature in the future too, so users can choose the playlist they would like to add tracks from.
 
 * Do you see any pros / cons with react-native-track-player?
 
